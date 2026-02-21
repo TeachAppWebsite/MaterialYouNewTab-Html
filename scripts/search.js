@@ -9,7 +9,7 @@
 const searchbar = document.getElementById("searchbar");
 const searchInput = document.getElementById("searchQ");
 
-const languageCode = (localStorage.getItem("selectedLanguage") || "en").slice(0, 2);
+const languageCode = (localStorage.getItem("selectedLanguage") || "zh").slice(0, 2);
 const searchQueryURLs = {
     engine1: "https://www.google.com/search?q=",
     engine2: "https://duckduckgo.com/?q=",
