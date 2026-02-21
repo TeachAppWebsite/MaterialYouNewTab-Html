@@ -10,7 +10,7 @@
 const translations = {
     en: en, // English
     pt: pt, // Portuguese-BR (Brazil)
-    zh: zh, // Chinese (Simplified)
+    zh: zh, // Chinese (Simplified) ← 我們要用的
     zh_TW: zh_TW, // Chinese (Traditional)
     hi: hi, // Hindi
     hu: hu, // Hungarian
@@ -102,7 +102,7 @@ function localizeNumbers(text, language) {
     // LRM marks, for RTL languages to ensure correct display
     const rtlFlipLanguages = ["ar_SA"];
     if (rtlFlipLanguages.includes(language)) {
-        text = `${LRM}${text}${LRM}`;
+        text = `\( {LRM} \){text}${LRM}`;
     }
 
     return text; // Return the localized text
@@ -384,7 +384,7 @@ function applyLanguage(lang) {
     quotesText.style.fontFamily = commonFontStack;
 
     // Save the selected language in localStorage
-    document.documentElement.lang = currentLanguage;
+    document.documentElement.lang = lang;
     saveLanguageStatus("selectedLanguage", lang);
 }
 
@@ -394,11 +394,21 @@ document.getElementById("languageSelector").addEventListener("change", (event) =
     location.reload();
 });
 
-// Function to apply the language when the page loads
+// 強制預設語言為中文（簡體 zh）
 window.onload = function () {
-    const savedLanguage = getLanguageStatus("selectedLanguage") || "zh"; // Default language is English
-    document.getElementById("languageSelector").value = savedLanguage;
-    applyLanguage(savedLanguage);
+    // 直接強制使用 zh，忽略之前的儲存值（測試階段最保險）
+    const defaultLanguage = "zh";
+
+    // 如果 localStorage 裡完全沒有語言設定，就寫入 zh
+    if (!getLanguageStatus("selectedLanguage")) {
+        saveLanguageStatus("selectedLanguage", defaultLanguage);
+    }
+
+    // 無論如何，這次都用 zh（可手動改回其他語言）
+    const currentLanguage = defaultLanguage;
+
+    document.getElementById("languageSelector").value = currentLanguage;
+    applyLanguage(currentLanguage);
 };
 
 // Function to save the language status in localStorage
