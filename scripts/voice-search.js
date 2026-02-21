@@ -19,13 +19,13 @@ const micIconCheckbox = document.getElementById("micIconCheckbox");
 const savedState = localStorage.getItem("micIconVisible");
 let isMicIconVisible;
 
-// If saved state exists, use it; otherwise, fallback to initial state based on browser support
+// If saved state exists, use it; otherwise, default to VISIBLE (true)
 if (savedState !== null) {
     isMicIconVisible = savedState === "true";
 } else {
-    // Default state: Hide mic icon if browser is not supported
-    isMicIconVisible = isSupportedBrowser();
-    // Save the initial state based on the user agent
+    // 修改：无论浏览器是否支持，默认显示麦克风图标
+    isMicIconVisible = true;
+    // 保存默认状态
     localStorage.setItem("micIconVisible", isMicIconVisible);
 }
 
