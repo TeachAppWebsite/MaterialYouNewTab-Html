@@ -61,6 +61,26 @@ document.addEventListener("DOMContentLoaded", function () {
     function loadSettings() {
         loadCheckboxState("shortcutsCheckboxState", dom.shortcutsCheckbox);
         loadCheckboxState("adaptiveIconToggle", dom.adaptiveIconToggle);
+
+        // 如果没有保存的状态，则默认开启快捷方式
+        if (localStorage.getItem("shortcutsCheckboxState") === null) {
+            dom.shortcutsCheckbox.checked = true;
+            saveCheckboxState("shortcutsCheckboxState", dom.shortcutsCheckbox);
+            dom.shortcuts.style.display = "flex";
+            dom.shortcutEditField.classList.remove("inactive");
+            dom.adaptiveIconField.classList.remove("inactive");
+            saveDisplayStatus("shortcutsDisplayStatus", "flex");
+            saveActiveStatus("shortcutEditField", "active");
+            saveActiveStatus("adaptiveIconField", "active");
+        }
+
+        // 如果没有保存的状态，则默认开启自适应图标
+        if (localStorage.getItem("adaptiveIconToggle") === null) {
+            dom.adaptiveIconToggle.checked = true;
+            saveCheckboxState("adaptiveIconToggle", dom.adaptiveIconToggle);
+            dom.shortcutsContainer.classList.add("adaptive-icons");
+        }
+
         loadActiveStatus("shortcutEditField", dom.shortcutEditField);
         loadActiveStatus("adaptiveIconField", dom.adaptiveIconField);
         loadDisplayStatus("shortcutsDisplayStatus", dom.shortcuts);
