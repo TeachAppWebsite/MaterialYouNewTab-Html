@@ -13,7 +13,7 @@ const languageCode = (localStorage.getItem("selectedLanguage") || "zh").slice(0,
 const searchQueryURLs = {
     engine1: "https://www.google.com/search?q=",
     engine2: "https://duckduckgo.com/?q=",
-    engine3: "https://bing.com/?q=",
+    engine3: "https://bing.com/?q=",                 // Bing
     engine4: "https://search.brave.com/search?q=",
     engine5: "https://www.youtube.com/results?search_query=",
     engine6: "https://www.google.com/search?tbm=isch&q=",
@@ -61,7 +61,7 @@ searchWith.addEventListener("click", function (event) {
 
 function toggleSearchEngines(category) {
     const defaultItems = {
-        "search-with": "engine0",
+        "search-with": "engine3",    // ← 修改：默认 Bing (engine3)
         "search-on": "engine5",
     };
     const checkeditem = localStorage.getItem(`selectedSearchEngine-${category}`) || defaultItems[category];
@@ -216,8 +216,8 @@ function performSearch(query) {
                     chrome.search.query({ text: searchTerm });
                 }
             } catch (error) {
-                // Fallback to Google if an error occurs
-                var fallbackUrl = searchQueryURLs.engine1 + encodeURIComponent(searchTerm);
+                // Fallback to Bing if an error occurs (改成 Bing)
+                var fallbackUrl = searchQueryURLs.engine3 + encodeURIComponent(searchTerm);
                 window.location.href = fallbackUrl;
             }
         } else {
@@ -232,7 +232,14 @@ enterBTN.addEventListener("click", () => performSearch());
 // Enter key handling is managed in the search suggestions keydown listener
 
 // Set selected search engine from local storage
-const storedSearchEngine = localStorage.getItem(`selectedSearchEngine-${activeSearchMode}`);
+let storedSearchEngine = localStorage.getItem(`selectedSearchEngine-${activeSearchMode}`);
+
+// 如果 localStorage 里没有记录 → 强制默认 Bing 并保存
+if (!storedSearchEngine) {
+    storedSearchEngine = "engine3";
+    localStorage.setItem(`selectedSearchEngine-${activeSearchMode}`, "engine3");
+    localStorage.setItem("activeSearchMode", "search-with");  // 确保模式匹配
+}
 
 toggleSearchEngines(activeSearchMode);
 
@@ -254,6 +261,15 @@ if (storedSearchEngine) {
     if (selectedRadioButton) {
         selectedRadioButton.checked = true;
     }
+} else {
+    // 额外保险：如果上面没触发，也强制选 Bing radio 并更新 UI
+    const bingRadio = document.querySelector('input[name="search-engine"][value="engine3"]');
+    if (bingRadio) {
+        bingRadio.checked = true;
+        const selector = '[data-engine="3"]';
+        swapDropdown(selector);
+        sortDropdown();
+    }
 }
 
 const dropdownItems = document.querySelectorAll(".dropdown-item:not(*[data-default])");
@@ -261,7 +277,6 @@ let selectedIndex = -1;
 
 // Function to update the selected item
 function updateSelection() {
-    // let hasSelected = [];
     dropdownItems.forEach((item, index) => {
 
         item.addEventListener("mouseenter", () => {
