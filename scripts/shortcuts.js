@@ -43,8 +43,8 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         {
             name: "Classworks",
-            url: "cs.houlang.cloud",
-            domains: ["cs.houlang.cloud"],
+            url: "classworks.dy.ci",
+            domains: ["classworks.dy.ci"],
             svg: `<img src="https://drive.dy.ci/d/%E6%95%99%E8%BE%85%E8%BD%AF%E4%BB%B6/%E5%9B%BE%E5%BA%8A/%E7%94%BB%E6%9D%BF%2025%20(4).svg?sign=OVVbMDdjN_avcEQ7DVCdfwqePqsvoXco2gYC041jVQE=:0" alt="Classworks">`
         }
     ];
