@@ -396,7 +396,7 @@ document.getElementById("languageSelector").addEventListener("change", (event) =
 
 // Function to apply the language when the page loads
 window.onload = function () {
-    const savedLanguage = getLanguageStatus("selectedLanguage") || "en"; // Default language is English
+    const savedLanguage = getLanguageStatus("selectedLanguage") || "zh"; // Default language is English
     document.getElementById("languageSelector").value = savedLanguage;
     applyLanguage(savedLanguage);
 };
