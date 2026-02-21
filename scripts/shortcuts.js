@@ -65,14 +65,6 @@ document.addEventListener("DOMContentLoaded", function () {
         loadActiveStatus("adaptiveIconField", dom.adaptiveIconField);
         loadDisplayStatus("shortcutsDisplayStatus", dom.shortcuts);
 
-        // 首次打开默认启用快捷方式
-        if (localStorage.getItem("shortcutsDisplayStatus") === null) {
-            dom.shortcuts.style.display = "flex";
-            dom.shortcutsCheckbox.checked = true;
-            saveDisplayStatus("shortcutsDisplayStatus", "flex");
-            saveCheckboxState("shortcutsCheckboxState", dom.shortcutsCheckbox);
-        }
-
         // Apply adaptive icon style if enabled
         if (dom.adaptiveIconToggle.checked) {
             dom.shortcutsContainer.classList.add("adaptive-icons");
@@ -210,7 +202,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function escapeHtml(unsafe) {
         return unsafe.replace(/[&<>"']/g, match => ({
             '&': '&amp;',
-            '<': '&lt;
+            '<': '&lt;',
             '>': '&gt;',
             '"': '&quot;',
             "'": '&#39;'
@@ -683,39 +675,5 @@ document.addEventListener("DOMContentLoaded", function () {
     function saveShortcut(entry) {
         localStorage.setItem(`shortcutName${entry._index}`, entry.querySelector(".shortcutName").value);
         localStorage.setItem(`shortcutURL${entry._index}`, entry.querySelector(".URL").value);
-    }
-
-    // 下面是你原代码里依赖但没贴出来的工具函数，我帮你补全，防止报错
-    function loadCheckboxState(key, checkbox) {
-        const saved = localStorage.getItem(key);
-        if (saved !== null) {
-            checkbox.checked = saved === "true";
-        }
-    }
-
-    function saveCheckboxState(key, checkbox) {
-        localStorage.setItem(key, checkbox.checked);
-    }
-
-    function loadActiveStatus(key, el) {
-        const status = localStorage.getItem(key);
-        if (status === "inactive") {
-            el.classList.add("inactive");
-        }
-    }
-
-    function saveActiveStatus(key, status) {
-        localStorage.setItem(key, status);
-    }
-
-    function loadDisplayStatus(key, el) {
-        const display = localStorage.getItem(key);
-        if (display) {
-            el.style.display = display;
-        }
-    }
-
-    function saveDisplayStatus(key, display) {
-        localStorage.setItem(key, display);
     }
 });
