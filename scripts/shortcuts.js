@@ -8,10 +8,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // Constants
     const MAX_SHORTCUTS = 50;
     const PLACEHOLDER = {
-        name: "New shortcut",
-        url: "https://github.com/prem-k-r/MaterialYouNewTab",
-        inputName: "Shortcut Name",
-        inputUrl: "Shortcut URL"
+        name: "新快捷方式",
+        url: "https://dy.ci/",
+        inputName: "名称",
+        inputUrl: "地址"
     };
 
     // DOM Elements
@@ -30,11 +30,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // Preset Data
     const presets = [
         {
-            name: "YouTube",
-            url: "youtube.com",
-            domains: ["youtube.com", "m.youtube.com", "youtu.be"],
-            svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" class="accentColor shorcutDarkColor"/><g style="transform: scale(0.6); transform-origin: center;"><path class="bgLightTint" id="darkLightTint" fill-rule="evenodd"
-                    d="M23.498 6.186a3.02 3.02 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.02 3.02 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.02 3.02 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.02 3.02 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814M9.545 15.568V8.432L15.818 12z"/></g></svg>`
+            name: "dy.ci",
+            url: "dy.ci",
+            domains: ["dy.ci"],
+            svg: `https://drive.dy.ci/d/%E6%95%99%E8%BE%85%E8%BD%AF%E4%BB%B6/%E5%9B%BE%E5%BA%8A/a4sl7-lh1v6.svg?sign=yKvTTEuMxarLcVJ3lb5igcRSw5MIk43TGHDUhSYVyAQ=:0`
         },
         {
             name: "Gmail",
