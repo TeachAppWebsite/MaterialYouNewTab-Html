@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
             name: "dy.ci",
             url: "dy.ci",
             domains: ["dy.ci"],
-            svg: `https://drive.dy.ci/d/%E6%95%99%E8%BE%85%E8%BD%AF%E4%BB%B6/%E5%9B%BE%E5%BA%8A/a4sl7-lh1v6.svg?sign=yKvTTEuMxarLcVJ3lb5igcRSw5MIk43TGHDUhSYVyAQ=:0`
+            svg: `<img src="https://drive.dy.ci/d/%E6%95%99%E8%BE%85%E8%BD%AF%E4%BB%B6/%E5%9B%BE%E5%BA%8A/a4sl7-lh1v6.svg?sign=yKvTTEuMxarLcVJ3lb5igcRSw5MIk43TGHDUhSYVyAQ=:0" alt="dy.ci">`
         },
         {
             name: "Gmail",
